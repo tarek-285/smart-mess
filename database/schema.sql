@@ -44,3 +44,16 @@ create table join_requests(
     ON UPDATE CASCADE
 
 );
+create table meal_sessions(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    mess_id BIGINT NOT NULL,
+    meal_type ENUM('breakfast', 'lunch', 'dinner') NOT NULL ,
+    meal_date DATE NOT NULL,
+    cooked_start_time TIME NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_meal_session (mess_id, meal_type, meal_date),
+    FOREIGN KEY (mess_id) REFERENCES messes(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+
+);
