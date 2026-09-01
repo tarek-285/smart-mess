@@ -14,3 +14,18 @@ create table messes (
     ON DELETE RESTRICT
     ON UPDATE CASCADE       
 );
+create table members(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT ,
+    mess_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    role ENUM('admin', 'member')NOT NULL DEFAULT 'member',
+    joined_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_member (mess_id, user_id),
+    FOREIGN KEY (mess_id) REFERENCES messes(id) 
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+
+);
