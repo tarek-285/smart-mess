@@ -71,4 +71,14 @@ create table meal_orders(
     FOREIGN KEY (member_id) REFERENCES members(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE   
+);
+create table bazar_duty(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    member_id BIGINT NOT NULL,
+    started_at DATE NOT NULL,
+    ended_at DATE NOT NULL,
+    FOREIGN KEY (member_id) REFERENCES members(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+    CHECK (ended_at >= started_at)
 )
