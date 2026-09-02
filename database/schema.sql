@@ -81,4 +81,25 @@ create table bazar_duty(
     ON DELETE CASCADE
     ON UPDATE CASCADE
     CHECK (ended_at >= started_at)
-)
+);
+
+CREATE TABLE bazar_items (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    member_id BIGINT NOT NULL,
+    item_name VARCHAR(255) NOT NULL,
+    category ENUM('rice', 'mixture', 'oil','vagetable','fish','meat','potato','onion','dal','other') NOT NULL,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    price DECIMAL(10, 2) NOT NULL CHECK (price >= 0),
+    purchased_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (member_id) REFERENCES members(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE   
+);
+CREATE TABLE menu_items(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    meal_session_id BIGINT NOT NULL,
+    item_name VARCHAR(255) NOT NULL,
+    foreign key (meal_session_id) references meal_sessions(id)  
+    on delete cascade
+  on update cascade
+);
