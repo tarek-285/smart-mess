@@ -31,7 +31,7 @@ public class JoinRequest {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RequestStatus status=RequestStatus.PENDING;
-    
+
     @Column(name="requested_at",nullable = false,updatable = false)
     private LocalDateTime requestedAt=LocalDateTime.now();
 }
